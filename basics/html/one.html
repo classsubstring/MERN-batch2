@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+
+    <title>DOM</title>
+  </head>
+  <body>
+    <div id="box">
+      <h1 id="heading" class="myclsass headingClass">
+        Hello, welcome to the batch
+      </h1>
+      <h1 id="heading">New Heading</h1>
+      <p id="text">
+        Lorem ipsum dolor sit
+        <span>amet consectetur adipisicing elit.</span> Quidem magnam
+      </p>
+      <button id="btn" type="submit">Submit</button>
+    </div>
+
+    <script>
+      const btn = document.getElementById("btn");
+      btn.addEventListener("click", (e) => {
+        console.log("button clicked");
+      });
+    </script>
+  </body>
+</html>

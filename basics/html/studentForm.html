@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Event Handling Form</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body class="bg-gray-100 flex items-center justify-center h-screen">
+    <form
+      id="userForm"
+      class="bg-white p-6 rounded-lg shadow-md w-96 space-y-4"
+    >
+      <h2 class="text-xl font-bold text-gray-700">User Form</h2>
+
+      <!-- Name -->
+      <div>
+        <label for="name" class="block text-sm font-medium text-gray-600"
+          >Name</label
+        >
+        <input
+          type="text"
+          id="name"
+          class="mt-1 block w-full border rounded-lg p-2 border-gray-300 focus:ring-2 focus:ring-blue-500 focus:outline-none"
+        />
+        <p id="nameError" class="text-sm text-red-500 hidden">
+          Enter Valid name
+        </p>
+      </div>
+
+      <!-- Email -->
+      <div>
+        <label for="email" class="block text-sm font-medium text-gray-600"
+          >Email</label
+        >
+        <input
+          type="email"
+          id="email"
+          class="mt-1 block w-full border rounded-lg p-2 border-gray-300 focus:ring-2 focus:ring-blue-500 focus:outline-none"
+        />
+        <p id="emailError" class="text-sm text-red-500 hidden">
+          Enter Valid email
+        </p>
+      </div>
+
+      <!-- Role -->
+      <div>
+        <label for="role" class="block text-sm font-medium text-gray-600"
+          >Role</label
+        >
+        <select
+          id="role"
+          class="mt-1 block w-full border rounded-lg p-2 border-gray-300 focus:ring-2 focus:ring-blue-500 focus:outline-none"
+        >
+          <option value="">Select Role</option>
+          <option value="student">Student</option>
+          <option value="teacher">Teacher</option>
+          <option value="admin">Admin</option>
+        </select>
+        <p id="roleError" class="text-sm text-red-500 hidden">
+          Select Valid role
+        </p>
+      </div>
+
+      <!-- Gender (Radio Buttons) -->
+      <div>
+        <p class="text-sm font-medium text-gray-600">Gender</p>
+        <div class="mt-1 flex space-x-4">
+          <label class="flex items-center">
+            <input type="radio" name="gender" value="male" class="mr-2" />
+            Male
+          </label>
+          <label class="flex items-center">
+            <input type="radio" name="gender" value="female" class="mr-2" />
+            Female
+          </label>
+          <p id="genderError" class="text-sm text-red-500 hidden">
+            Select Valid gender
+          </p>
+        </div>
+      </div>
+
+      <!-- Terms (Checkbox) -->
+      <div class="flex items-center">
+        <input
+          type="checkbox"
+          id="terms"
+          class="mr-2"
+          name="terms"
+          value="terms and and and conditions"
+        />
+
+        <label for="terms" class="text-sm text-gray-600"
+          >I agree to the terms & conditions</label
+        >
+        <p id="agreeError" class="text-sm text-red-500 hidden">
+          Please agree with the terms
+        </p>
+      </div>
+
+      <!-- Submit Button -->
+      <button
+        type="submit"
+        class="w-full bg-blue-500 text-white py-2 rounded-lg hover:bg-blue-600"
+        onclick="handleClick(event)"
+      >
+        Submit
+      </button>
+    </form>
+
+    <script>
+      const userName = document.getElementById("name");
+      const email = document.getElementById("email");
+      const role = document.getElementById("role");
+
+      const terms = document.getElementById("terms");
+
+      //Error ids
+
+      const nameError = document.getElementById("nameError");
+      const emailError = document.getElementById("emailError");
+      const roleError = document.getElementById("roleError");
+      const genderError = document.getElementById("genderError");
+      const agreeError = document.getElementById("agreeError");
+      // console.log(nameError);
+
+      const form = document.getElementById("userForm");
+      function handleClick(e) {
+        e.preventDefault();
+        console.log(userName);
+        const gender = document.querySelector("input[name='gender']:checked");
+
+        if (userName.value.trim() === "") {
+          nameError.classList.remove("hidden");
+          nameError.innerHTML =
+            "PLease Enter valid name, else form will not be submitted";
+        }
+        if (email.value.trim() === "") {
+          emailError.classList.remove("hidden");
+        }
+        if (role.value.trim() === "") {
+          roleError.classList.remove("hidden");
+        }
+
+        if (!gender) {
+          genderError.classList.remove("hidden");
+        } else {
+          alert("form submitted");
+          console.log("form submitted");
+        }
+      }
+    </script>
+  </body>
+</html>
