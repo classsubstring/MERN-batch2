@@ -17,6 +17,13 @@ function Navbar() {
           {/* Desktop Menu */}
           <div className="hidden md:flex space-x-8 items-center">
             <NavLink
+              to={"/dashboard"}
+              className="text-gray-700 dark:text-gray-200 hover:text-indigo-600"
+            >
+              Dashboard
+            </NavLink>
+
+            <NavLink
               to={"/"}
               className="text-gray-700 dark:text-gray-200 hover:text-indigo-600"
             >
