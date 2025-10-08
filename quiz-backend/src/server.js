@@ -1,9 +1,12 @@
 import express from "express";
 import userRouter from "./routes/users.route.js";
 import quizRouter from "./routes/quiz.route.js";
+import authRouter from "./routes/auth.route.js";
 
 const server = express();
 
+//routes configure
+server.use("/api", authRouter);
 server.use("/api", userRouter);
 server.use("/api", quizRouter);
 
