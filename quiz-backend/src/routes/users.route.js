@@ -7,10 +7,9 @@ import {
 } from "../controllers/users.controller.js";
 
 const userRouter = express.Router();
-
+userRouter.delete("/users/:userId", deleteUser);
+userRouter.put("/users/:userId", updateUser);
 userRouter.get("/users", listUsers);
-userRouter.get("/create-user", createUser);
-userRouter.get("/delete-user", deleteUser);
-userRouter.get("/update-user", updateUser);
+userRouter.post("/users", createUser);
 
 export default userRouter;

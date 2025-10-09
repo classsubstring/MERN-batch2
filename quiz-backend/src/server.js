@@ -5,6 +5,21 @@ import authRouter from "./routes/auth.route.js";
 
 const server = express();
 
+server.use(express.json());
+
+server.use((req, resp, next) => {
+  const { token } = req.headers;
+  console.log(token);
+  console.log("this is middleware...");
+  if (token == "7412") {
+    next();
+  } else {
+    return resp.send("you are not allowed !!");
+  }
+
+  // resp.send("hello i am middleware");
+});
+
 //routes configure
 server.use("/api", authRouter);
 server.use("/api", userRouter);

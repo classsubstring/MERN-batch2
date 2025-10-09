@@ -1,9 +1,17 @@
 // apis__routes
 import express from "express";
-import { listQuizzes } from "../controllers/quiz.controller.js";
+import {
+  createQuiz,
+  deleteQuiz,
+  getSingleQuiz,
+  listQuizzes,
+} from "../controllers/quiz.controller.js";
 
 const quizRouter = express.Router();
 
-quizRouter.get("/quiz", listQuizzes);
+quizRouter.delete("/quizzes/:quizId", deleteQuiz);
+quizRouter.get("/quizzes/:quizId", getSingleQuiz);
+quizRouter.get("/quizzes", listQuizzes);
+quizRouter.post("/quizzes", createQuiz);
 
 export default quizRouter;
