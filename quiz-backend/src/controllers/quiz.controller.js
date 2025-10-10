@@ -1,3 +1,5 @@
+import Quiz from "../models/quiz.model.js";
+
 let quizzes = [
   {
     quizId: "13541245",
@@ -40,27 +42,31 @@ let quizzes = [
     description: "This quiz contains questinos related to basics of python.",
   },
 ];
-export const listQuizzes = (req, resp) => {
+export const listQuizzes = async (req, resp) => {
   //file delete
   //email bhejne
-  return resp.json(quizzes);
+
+  const q = await Quiz.find();
+
+  return resp.json(q);
 };
 
-export const createQuiz = (req, resp) => {
+export const createQuiz = async (req, resp) => {
   //quiz create:...
 
-  const { quizId, title, description } = req.body;
+  const { title, description } = req.body;
   // console.log(quizId);
   // console.log(title);
   // console.log(description);
   const quiz = {
-    quizId,
     title,
     description,
   };
 
-  quizzes.push(quiz);
+  // quizzes.push(quiz);
 
+  const resposneData = await Quiz.create(quiz);
+  console.log(resposneData);
   return resp.send("quiz created");
 };
 

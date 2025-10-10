@@ -2,7 +2,7 @@ import express from "express";
 import userRouter from "./routes/users.route.js";
 import quizRouter from "./routes/quiz.route.js";
 import authRouter from "./routes/auth.route.js";
-
+import "./config/db.config.js";
 const server = express();
 
 server.use(express.json());
