@@ -3,6 +3,8 @@ import userRouter from "./routes/users.route.js";
 import quizRouter from "./routes/quiz.route.js";
 import authRouter from "./routes/auth.route.js";
 import "./config/db.config.js";
+import { createQuiz } from "./controllers/quiz.controller.js";
+import quesRouter from "./routes/question.route.js";
 const server = express();
 
 server.use(express.json());
@@ -24,6 +26,7 @@ server.use((req, resp, next) => {
 server.use("/api", authRouter);
 server.use("/api", userRouter);
 server.use("/api", quizRouter);
+server.use("/api", quesRouter);
 
 server.listen(8181, () => {
   console.log(`server started on port ${8181}`);
@@ -57,3 +60,5 @@ server.listen(8181, () => {
 // server.listen(7979, () => {
 //   console.log("server started on port number ", 7979);
 // });
+
+//create quiz

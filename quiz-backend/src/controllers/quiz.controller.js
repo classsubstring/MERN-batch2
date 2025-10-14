@@ -54,13 +54,26 @@ export const listQuizzes = async (req, resp) => {
 export const createQuiz = async (req, resp) => {
   //quiz create:...
 
-  const { title, description } = req.body;
+  const {
+    title,
+    description,
+    maxMarks,
+    minusMarking,
+    questions,
+    instructions,
+    maxTime,
+  } = req.body;
   // console.log(quizId);
   // console.log(title);
   // console.log(description);
   const quiz = {
     title,
     description,
+    maxMarks,
+    minusMarking,
+    questions,
+    instructions,
+    maxTime,
   };
 
   // quizzes.push(quiz);
