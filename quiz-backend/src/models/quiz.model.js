@@ -19,7 +19,12 @@ const QuizSchema = new mongoose.Schema({
     type: Boolean,
     default: false,
   },
-  questions: [Schema.Types.ObjectId],
+  questions: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: "Question",
+    },
+  ],
   maxTime: {
     type: Number,
     required: true,

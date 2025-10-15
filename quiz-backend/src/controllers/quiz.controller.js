@@ -1,4 +1,5 @@
 import Quiz from "../models/quiz.model.js";
+import { generateQuizFromAI } from "../services/quiz.services.js";
 
 let quizzes = [
   {
@@ -84,13 +85,15 @@ export const createQuiz = async (req, resp) => {
 };
 
 // get single quiz
-export const getSingleQuiz = (req, resp) => {
+export const getSingleQuiz = async (req, resp) => {
   const { quizId } = req.params;
   console.log(quizId);
 
-  const resultQuiz = quizzes.find((quiz) => quiz.quizId == quizId);
+  const quiz = await Quiz.findOne({ _id: quizId }).populate("questions");
 
-  return resp.json(resultQuiz);
+  // 10 --> 10 times
+
+  return resp.json(quiz);
 };
 
 //delete and update
@@ -100,4 +103,16 @@ export const deleteQuiz = (req, resp) => {
   const newQuizzes = quizzes.filter((quiz) => quiz.quizId != quizId);
   quizzes = newQuizzes;
   return resp.send("quiz is deleted !!");
+};
+
+// create quiz from ai
+export const createQuizFromAI = async (req, resp) => {
+  const { title, numberOfQuestions, description } = req.body;
+  const response = await generateQuizFromAI(
+    title,
+    description,
+    numberOfQuestions
+  );
+
+  return resp.json(response);
 };
