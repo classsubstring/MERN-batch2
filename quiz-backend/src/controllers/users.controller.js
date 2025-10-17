@@ -1,3 +1,5 @@
+import User from "../models/user.model.js";
+
 let users = [
   {
     userId: "23523234",
@@ -39,3 +41,4 @@ export const updateUser = (req, resp) => {
   //update...
   resp.send("user updated successfully..");
 };
+

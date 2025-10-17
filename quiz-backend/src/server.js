@@ -5,25 +5,17 @@ import authRouter from "./routes/auth.route.js";
 import "./config/db.config.js";
 import { createQuiz } from "./controllers/quiz.controller.js";
 import quesRouter from "./routes/question.route.js";
+import { authMiddleware } from "./middlewares/auth.moddleware.js";
 const server = express();
 
 server.use(express.json());
 
-server.use((req, resp, next) => {
-  const { token } = req.headers;
-  console.log(token);
-  console.log("this is middleware...");
-  if (token == "7412") {
-    next();
-  } else {
-    return resp.send("you are not allowed !!");
-  }
+server.use("/api", authRouter);
 
-  // resp.send("hello i am middleware");
-});
+server.use(authMiddleware);
 
 //routes configure
-server.use("/api", authRouter);
+
 server.use("/api", userRouter);
 server.use("/api", quizRouter);
 server.use("/api", quesRouter);
