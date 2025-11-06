@@ -1,4 +1,5 @@
 import jsonwebtoken from "jsonwebtoken";
+import { ACCESS_SECRET, ACCESS_TOKEN_EXP } from "./utils.js";
 
 export const createToken = (user, token_type = "access_token") => {
   return jsonwebtoken.sign(
@@ -8,9 +9,9 @@ export const createToken = (user, token_type = "access_token") => {
       sub: user._id,
       token_type,
     },
-    "asdjklopohjcwehnhfgbhxcuecjhwghefkunjxdwejklbrvyhwj;hfbcnetjh",
+    ACCESS_SECRET,
     {
-      expiresIn: "1d",
+      expiresIn: ACCESS_TOKEN_EXP,
     }
   );
 };
