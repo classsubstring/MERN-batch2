@@ -6,8 +6,14 @@ import "./config/db.config.js";
 import { createQuiz } from "./controllers/quiz.controller.js";
 import quesRouter from "./routes/question.route.js";
 import { authMiddleware } from "./middlewares/auth.moddleware.js";
+import cors from "cors";
 const server = express();
 
+server.use(
+  cors({
+    origin: "http://localhost:5173",
+  })
+);
 server.use(express.json());
 
 server.use("/api", authRouter);

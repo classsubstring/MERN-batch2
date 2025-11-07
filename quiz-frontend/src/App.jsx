@@ -25,6 +25,9 @@ import AppLayout from "./pages/AppLayout";
 import UserLayout from "./pages/users/UserLayout";
 import UserQuizzes from "./pages/users/UserQuizzes";
 import { ThemeProvider } from "next-themes";
+import FeaturesPage from "./pages/FeaturesPage";
+import ForgotPage from "./pages/ForgotPage";
+import { Toaster } from "react-hot-toast";
 
 function App() {
   const [count, setCount] = useState(0);
@@ -33,12 +36,15 @@ function App() {
     <>
       <BrowserRouter>
         <ThemeProvider attribute={"class"}>
+          <Toaster />
           <Routes>
             <Route path="" element={<AppLayout />}>
               <Route path="" element={<HomePage />} />
               <Route path="/login" element={<LoginPage />} />
               <Route path="/signup" element={<SignupPage />} />
               <Route path="/services" element={<ServicesPage />} />
+              <Route path="/features" element={<FeaturesPage />} />
+              <Route path="/forgot-password" element={<ForgotPage />} />
               <Route path="/users" element={<UserLayout />}>
                 <Route path="" element={<UserDashPage />} />
                 <Route path="quizzes" element={<UserQuizzes />} />

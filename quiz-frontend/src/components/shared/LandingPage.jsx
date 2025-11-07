@@ -4,27 +4,43 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { ArrowRight } from "lucide-react";
-
+import { motion } from "framer-motion";
 const LandingPage = () => {
   return (
     <main className="flex flex-col items-center text-center overflow-hidden">
       {/* ===== HERO / BANNER SECTION ===== */}
       <section className="w-full py-24 bg-gradient-to-b from-muted/30 to-background">
         <div className="container mx-auto px-6 flex flex-col items-center">
-          <h1 className="text-4xl md:text-6xl font-bold mb-6 text-foreground">
+          <motion.h1
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            className="text-4xl md:text-6xl font-bold mb-6 text-foreground"
+          >
             Boost Your Knowledge with{" "}
             <span className="text-primary">Smart Quiz</span>
-          </h1>
-          <p className="max-w-2xl text-lg md:text-xl text-muted-foreground mb-8">
+          </motion.h1>
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.2 }}
+            className="max-w-2xl text-lg md:text-xl text-muted-foreground mb-8"
+          >
             Personalized quizzes powered by AI — learn faster, smarter, and with
             purpose.
-          </p>
-          <Button
-            size="lg"
-            className="rounded-full bg-primary text-primary-foreground hover:bg-primary/90"
+          </motion.p>
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.2 }}
           >
-            Get Started <ArrowRight className="ml-2 h-5 w-5" />
-          </Button>
+            <Button
+              size="lg"
+              className="rounded-full bg-primary text-primary-foreground hover:bg-primary/90"
+            >
+              Get Started <ArrowRight className="ml-2 h-5 w-5" />
+            </Button>
+          </motion.div>
         </div>
       </section>
 
