@@ -21,7 +21,7 @@ export const loginUser = async (req, resp) => {
   const { email, password } = req.body;
   //check the email and password
   if (!email || !password) {
-    return resp.status(403).json({
+    return resp.status(400).json({
       message: "Invalid Credentials !!",
     });
   }
@@ -30,8 +30,8 @@ export const loginUser = async (req, resp) => {
 
   const user = await User.findOne({ email });
   if (!user) {
-    return resp.status(403).json({
-      message: "Invalid Username or Password !",
+    return resp.status(400).json({
+      message: "Invalid Email or Password !",
     });
   }
 
@@ -39,7 +39,7 @@ export const loginUser = async (req, resp) => {
   const match = await bcrypt.compare(password, user.password);
 
   if (!match) {
-    return resp.status(403).json({
+    return resp.status(400).json({
       message: "Invalid Username or Password !!",
     });
   }

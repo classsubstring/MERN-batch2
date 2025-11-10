@@ -28,6 +28,11 @@ import { ThemeProvider } from "next-themes";
 import FeaturesPage from "./pages/FeaturesPage";
 import ForgotPage from "./pages/ForgotPage";
 import { Toaster } from "react-hot-toast";
+import FeedQuiz from "./pages/users/FeedQuiz";
+import CreateQuiz from "./pages/users/CreateQuiz";
+import ProfilePage from "./pages/users/ProfilePage";
+import FeedbackPage from "./pages/users/FeedbackPage";
+import { AuthProvider } from "./context/AuthContext";
 
 function App() {
   const [count, setCount] = useState(0);
@@ -35,23 +40,29 @@ function App() {
   return (
     <>
       <BrowserRouter>
-        <ThemeProvider attribute={"class"}>
-          <Toaster />
-          <Routes>
-            <Route path="" element={<AppLayout />}>
-              <Route path="" element={<HomePage />} />
-              <Route path="/login" element={<LoginPage />} />
-              <Route path="/signup" element={<SignupPage />} />
-              <Route path="/services" element={<ServicesPage />} />
-              <Route path="/features" element={<FeaturesPage />} />
-              <Route path="/forgot-password" element={<ForgotPage />} />
-              <Route path="/users" element={<UserLayout />}>
-                <Route path="" element={<UserDashPage />} />
-                <Route path="quizzes" element={<UserQuizzes />} />
+        <AuthProvider>
+          <ThemeProvider attribute={"class"}>
+            <Toaster />
+            <Routes>
+              <Route path="" element={<AppLayout />}>
+                <Route path="" element={<HomePage />} />
+                <Route path="/login" element={<LoginPage />} />
+                <Route path="/signup" element={<SignupPage />} />
+                <Route path="/services" element={<ServicesPage />} />
+                <Route path="/features" element={<FeaturesPage />} />
+                <Route path="/forgot-password" element={<ForgotPage />} />
+                <Route path="/users" element={<UserLayout />}>
+                  <Route path="" element={<UserDashPage />} />
+                  <Route path="quizzes" element={<UserQuizzes />} />
+                  <Route path="feed" element={<FeedQuiz />} />
+                  <Route path="create" element={<CreateQuiz />} />
+                  <Route path="profile" element={<ProfilePage />} />
+                  <Route path="feedback" element={<FeedbackPage />} />
+                </Route>
               </Route>
-            </Route>
-          </Routes>
-        </ThemeProvider>
+            </Routes>
+          </ThemeProvider>
+        </AuthProvider>
       </BrowserRouter>
 
       {/* <Card className="w-full max-w-sm mx-auto my-10">

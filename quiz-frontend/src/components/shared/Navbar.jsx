@@ -4,9 +4,13 @@ import { Button } from "@/components/ui/button";
 import { Sheet, SheetTrigger, SheetContent } from "@/components/ui/sheet";
 import { Menu, Moon, Sun } from "lucide-react";
 import { useTheme } from "next-themes";
+import { useAuthContenxt } from "../../context/AuthContext";
+import useAuth from "../../hooks/useAuth";
 
 function Navbar() {
   const { theme, setTheme } = useTheme();
+  const { token, user } = useAuthContenxt();
+  const [checkLogin, logoutUser] = useAuth();
   const navItems = [
     { name: "Home", path: "/" },
     { name: "Services", path: "/services" },
@@ -60,17 +64,40 @@ function Navbar() {
             )}
           </Button>
 
-          <Link to="/login">
-            <Button variant="outline" className="rounded-full">
-              Login
-            </Button>
-          </Link>
+          {checkLogin() && (
+            <>
+              <Link to="/users">
+                <Button variant="outline" className="rounded-full">
+                  {user.name}
+                </Button>
+              </Link>
 
-          <Link to="/signup">
-            <Button className="rounded-full bg-primary text-primary-foreground hover:bg-primary/90">
-              Sign Up
-            </Button>
-          </Link>
+              <Button
+                onClick={() => {
+                  logoutUser();
+                }}
+                className="cursor-pointer rounded-full bg-primary text-primary-foreground hover:bg-primary/90"
+              >
+                Logout
+              </Button>
+            </>
+          )}
+
+          {!checkLogin() && (
+            <>
+              <Link to="/login">
+                <Button variant="outline" className="rounded-full">
+                  Login
+                </Button>
+              </Link>
+
+              <Link to="/signup">
+                <Button className="rounded-full bg-primary text-primary-foreground hover:bg-primary/90">
+                  Sign Up
+                </Button>
+              </Link>
+            </>
+          )}
         </div>
 
         {/* Mobile Menu */}

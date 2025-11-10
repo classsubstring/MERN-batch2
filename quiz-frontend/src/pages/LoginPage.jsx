@@ -11,8 +11,18 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
 import { NavLink, useNavigate } from "react-router";
+import { ca } from "zod/v4/locales";
+import { loginUser } from "../services/AuthService";
+import toast from "react-hot-toast";
+import { Spinner } from "@/components/ui/spinner";
+import { useAuthContenxt } from "../context/AuthContext";
+import useAuth from "../hooks/useAuth";
 function LoginPage() {
   const navigate = useNavigate();
+  const { setToken, setUser, token, user } = useAuthContenxt();
+  const [checkLogin, logoutUser, loginUserLocal] = useAuth();
+  const [loading, setLoading] = useState(false);
+
   const [formData, setFormData] = useState({
     email: "",
     password: "",
@@ -21,10 +31,32 @@ function LoginPage() {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     console.log("Login Data:", formData);
+
     // Add your login API logic here
+
+    // server ko ye rha mera login detail---:
+
+    try {
+      setLoading(true);
+      const result = await loginUser(formData);
+      console.log(result);
+      toast.success("Login success..");
+      loginUserLocal(result.accessToken, result.user);
+
+      navigate("/users");
+    } catch (error) {
+      console.log(error);
+      if (error.status == 400) {
+        toast.error(error?.response?.data?.message);
+      } else {
+        toast.error("Error in login");
+      }
+    } finally {
+      setLoading(false);
+    }
   };
   return (
     <div className="mt-4 lg:mt-15 flex items-center justify-center bg-background text-foreground px-4">
@@ -71,8 +103,14 @@ function LoginPage() {
                 />
               </div>
 
-              <Button type="submit" className="w-full">
-                Log In
+              <Button disabled={loading} type="submit" className="w-full">
+                {loading ? (
+                  <>
+                    <Spinner /> {"Please wait.."}
+                  </>
+                ) : (
+                  "Login"
+                )}
               </Button>
             </form>
           </CardContent>
