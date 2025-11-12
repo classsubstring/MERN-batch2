@@ -3,7 +3,7 @@ import { axiosInstance } from "./axiosConfig";
 
 //get all quizzes
 export const getAllQuizzes = async () => {
-  const response = await axiosInstance.get(`quizzes`);
+  const response = await axiosInstance.get(`/quizzes`);
   return response.data;
 };
 
