@@ -13,6 +13,16 @@ export const createQuizWithAI = async (aiData) => {
   return response.data;
 };
 
+
+//load single quiz
+export const getSingleQuiz=async(quizId)=>{
+
+  const resposne= await axiosInstance.get(`/quizzes/${quizId}`)
+
+  return resposne.data
+
+}
+
 //get single quiz
 
 // ceate quiz

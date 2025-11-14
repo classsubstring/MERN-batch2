@@ -33,6 +33,7 @@ import CreateQuiz from "./pages/users/CreateQuiz";
 import ProfilePage from "./pages/users/ProfilePage";
 import FeedbackPage from "./pages/users/FeedbackPage";
 import { AuthProvider } from "./context/AuthContext";
+import QuizPlayGround from "./pages/users/QuizPlayGround";
 
 function App() {
   const [count, setCount] = useState(0);
@@ -58,6 +59,10 @@ function App() {
                   <Route path="create" element={<CreateQuiz />} />
                   <Route path="profile" element={<ProfilePage />} />
                   <Route path="feedback" element={<FeedbackPage />} />
+                  <Route
+                    path="quiz-playground/:quizId"
+                    element={<QuizPlayGround />}
+                  />
                 </Route>
               </Route>
             </Routes>

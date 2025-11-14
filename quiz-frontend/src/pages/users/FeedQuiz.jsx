@@ -34,6 +34,7 @@ function FeedQuiz() {
       <div className="flex flex-wrap gap-4 mt-10">
         {quizzes.map((quiz) => (
           <QuizCard
+            quizId={quiz._id}
             title={quiz.title}
             description={quiz.description}
             maxMarks={quiz.maxMarks}

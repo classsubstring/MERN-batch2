@@ -1,9 +1,18 @@
 import React from "react";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import {
+  Card,
+  CardContent,
+  CardHeader,
+  CardTitle,
+  CardFooter,
+} from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Clock, CheckCircle } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { useNavigate } from "react-router";
 
 const QuizCard = ({
+  quizId,
   title,
   description,
   maxMarks,
@@ -12,10 +21,11 @@ const QuizCard = ({
   coverImage,
   createdDate,
 }) => {
+  const navigate = useNavigate();
   return (
-    <Card className=" w-[32%] overflow-hidden hover:shadow-lg transition-all duration-300 rounded-2xl border border-muted">
+    <Card className=" flex flex-col  justify-between w-[32%] overflow-hidden hover:shadow-lg transition-all duration-300 rounded-2xl border border-muted">
       {/* Image Section */}
-      <div className="relative w-full h-48">
+      <div className="relative w-full h-30">
         <img
           src={coverImage}
           alt={title}
@@ -64,6 +74,18 @@ const QuizCard = ({
           )}
         </div>
       </CardContent>
+      <CardFooter className="flex   flex-col justify-center items-center">
+        <Button
+          onClick={() => {
+            navigate(`/users/quiz-playground/${quizId}`);
+          }}
+          className="w-full cursor-pointer"
+          size="sm"
+          variant="default"
+        >
+          Start{" "}
+        </Button>
+      </CardFooter>
     </Card>
   );
 };
