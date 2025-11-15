@@ -34,7 +34,11 @@ import ProfilePage from "./pages/users/ProfilePage";
 import FeedbackPage from "./pages/users/FeedbackPage";
 import { AuthProvider } from "./context/AuthContext";
 import QuizPlayGround from "./pages/users/QuizPlayGround";
-
+// console.log = () => {};
+// console.debug = () => {};
+// console.info = () => {};
+// console.warn = () => {};
+// console.error = () => {};
 function App() {
   const [count, setCount] = useState(0);
 

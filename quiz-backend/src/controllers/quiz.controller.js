@@ -91,6 +91,13 @@ export const getSingleQuiz = async (req, resp) => {
 
   const quiz = await Quiz.findOne({ _id: quizId }).populate("questions");
 
+  // const newQuestions = quiz.questions.map((question) => {
+  //   question.correctAnswer = "";
+  //   return question;
+  // });
+
+  quiz.questions = newQuestions;
+
   // 10 --> 10 times
 
   return resp.json(quiz);
